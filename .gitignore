@@ -1,0 +1,7 @@
+# Local previews and editor state
+.DS_Store
+Thumbs.db
+.vscode/
+node_modules/
+*.log
+.qa/
