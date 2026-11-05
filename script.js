@@ -13,7 +13,7 @@ const zh = {
   paperFigureLabel: "阅读 FaaSRep 论文", paperFigureAlt: "FaaSRep 论文图 1：工作流协调从乐观执行中学习依赖，指导有序重试",
   paperSummary: "FaaSRep 从乐观执行中学习依赖关系，指导有序重试，为有状态 Serverless 工作流提供严格可串行化，并减少冗余计算和调度开销。", paperResult: "在所评估的真实应用中，相比 Concord 的平均吞吐量提升。",
   abstractToggle: "查看摘要", abstractText: "Serverless 计算逐渐被用于由有状态工作流构成的复杂应用，但高效支持严格可串行化仍然具有挑战。FaaSRep 通过工作流协调（Workflow Reconciliation）缓解反复冲突与重试的问题：在验证阶段学习函数级依赖，用于指导有序重试；通过混合乐观／悲观协议处理应用级中止；使用函数级重执行和点对点快速路径，减少冗余工作和控制平面开销。在所评估的真实应用中，FaaSRep 相比 Concord 和 Beldi 的平均吞吐量分别提升 1.44–2.73 倍和 3.81–9.01 倍。",
-  educationTitle: "教育经历", educationSubtitle: "在计算机科学领域的学习历程。", phdDate: "2024.09 — 至今", phdDegree: "计算机科学 · 博士在读", phdSchool: "计算机学院 · 博士三年级", educationAdvisor: "导师：", bachelorDate: "2020.09 — 2024.06", bachelorDegree: "计算机科学与技术 · 工学学士", bachelorSchool: "IEEE 试点班 · 电子信息与电气工程学院", earlierLabel: "本科科研经历", earlierDescription: "在 IPADS 参与可定制、可扩展的 Serverless 基准测试集研发，指导教师为杜东、夏虞斌。",
+  educationTitle: "教育经历", educationSubtitle: "在计算机科学领域的学习历程。", phdDate: "2024.09 — 至今", phdDegree: "计算机科学 · 博士在读", phdSchool: "计算机学院 · 博士三年级", educationAdvisor: "导师：", bachelorDate: "2020.09 — 2024.06", bachelorDegree: "计算机科学与技术 · 工学学士", bachelorSchool: "IEEE 试点班 · 电子信息与电气工程学院",
   contactEyebrow: "联系我", contactTitle: "聊聊计算机系统。", contactDescription: "欢迎通过邮件交流研究问题。", footerLocation: "上海交通大学", updated: "更新于 2026 年 11 月", backTop: "返回顶部 ↑",
   citationTitle: "引用这篇论文", closeCitation: "关闭引用窗口", downloadBib: "下载 .bib", copyCitation: "复制 BibTeX", copied: "已复制到剪贴板。", copyFailed: "请选中引用文本手动复制，或下载 .bib 文件。"
 };
@@ -53,6 +53,9 @@ function updateNavigation() {
   let currentSection = sections[0];
   for (const section of sections) {
     if (section.getBoundingClientRect().top <= 155) currentSection = section;
+  }
+  if (window.scrollY > 0 && Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2) {
+    currentSection = sections[sections.length - 1];
   }
   navLinks.forEach(link => {
     const active = link.getAttribute("href") === `#${currentSection.id}`;
